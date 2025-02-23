@@ -95,6 +95,25 @@
             strange and bizarre.  
         </p>
     </section>
+    <section class="contact-form" title="contact-form">
+        <hgroup>    
+            <h2>Let's talk!</h2>
+            <p>If you any suggestions for my latest project, I'd love to hear you out.</p>
+        </hgroup>
+        <form action="https://httpbin.org/post" method="POST">
+            <label for="contact-name">Name</label><br>
+            <input type="text" id="contact-name" name="contact-name" placeholder="Jane Doe" minlength="1" maxlength="30" pattern="[A-Z a-z]+" tabindex="1">
+            <br>
+            <label for="contact-email">Email *</label><br>
+            <input type="email" id="contact-email" name="contact-email" placeholder="example@gmail.com" maxlength="320" required tabindex="2">
+            <br>
+            <label for="comments">Comments (max 500 characters) *</label><br>
+            <textarea id="comments" name="comments" placeholder="Bugs, features, balance changes" rows="4" cols="50" maxlength="500" required tabindex="3"></textarea>
+            <br>
+            <input type="hidden" name="possible_bot" value="true">
+            <input type="submit">
+        </form>
+    </section>
     <footer>
         <address>
             Author: Gabriel Ikezaki<br> 

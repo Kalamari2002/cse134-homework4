@@ -26,6 +26,7 @@
     --normal-font-color: rgb(238, 236, 207);
     --link-font-color: rgb(175, 232, 213);
     --footer-background-color: rgb(99, 99, 99);
+    --invalid-background-color:rgb(236, 149, 149);
 
     --paragraph-font-family: Quicksand;
     --seg-title-font-family: MontserratBoldItalic;
@@ -42,6 +43,9 @@
     --item-margin-bottom: 4%;
     --segment-margin-top:2%;
     --default-gap:2%;
+
+    --desktop-input-height:40px;
+    --desktop-textarea-height:150px;
 
     --page-title-font-size: 46px;
     --seg-title-font-size: 36px;
@@ -134,7 +138,39 @@ section{
     margin-top: var(--segment-margin-top);
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: var(--normal-font-color);
+    padding:var(--default-gap)
+}
 
+input {
+    margin-bottom: var(--default-gap);
+    background-color: var(--normal-font-color);
+    color:var(--background-color);
+    font-family: var(--paragraph-font-family);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--normal-font-color);
+}
+input:user-invalid{
+    background-color: var(--invalid-background-color);
+}
+
+textarea{
+    margin-bottom: var(--default-gap);
+    background: var(--normal-font-color);
+    color: var(--background-color);
+    font-family: var(--paragraph-font-family);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--normal-font-color);
+}
+textarea:user-invalid{
+    background-color: var(--invalid-background-color);
+}
 /*Smaller phones*/
 @media screen and (max-width: 500px){
     nav {
@@ -164,6 +200,28 @@ section{
     nav li a:hover {
         background-color: var(--background-color);
         color: var(--normal-font-color);
+    }
+
+    form{
+        width: 100%;
+    }
+    form label{
+        font-size: var(--paragraph-font-size);
+    }
+
+    input{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-input-height);
+    }
+
+    input[type="submit"]{
+        font-size: var(--paragraph-font-size);
+        width: 50%;
+    }
+
+    textarea{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-textarea-height);
     }
 
     footer{
@@ -217,6 +275,25 @@ section{
         color: var(--normal-font-color);
     }
 
+    form{
+        width: 100%;
+    }
+    form label{
+        font-size: var(--paragraph-font-size);
+    }
+    input{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-input-height);
+    }
+    input[type="submit"]{
+        font-size: var(--paragraph-font-size);
+        width: 50%;
+    }
+    textarea{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-textarea-height);
+    }
+
     footer{
         font-size: var(--mobile-footer-font-size);
     }
@@ -239,7 +316,7 @@ section{
 
 
 /*Tablet, landscape*/
-@media only screen and (min-width: 1100px) {
+@media screen and (min-width: 1000px){
     nav {
         display: flex;
         background-color: var(--normal-font-color);
@@ -270,6 +347,30 @@ section{
         background-color: var(--background-color);
         color: var(--normal-font-color);
     }
+    
+    form{
+        width: 100%;
+    }
+    form label{
+        font-size: var(--paragraph-font-size);
+    }
+    input{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-input-height);
+        width: 100%;
+    }
+    input[type="submit"]{
+        font-size: var(--paragraph-font-size);
+        width: 50%;
+    }
+    textarea{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-textarea-height);
+    }
+
+    .introduction > p{
+        width: var(--long-text-width);
+    }    
 
     .introduction > p{
         width: var(--long-text-width);
@@ -320,6 +421,28 @@ section{
     nav li a:hover {
         background-color: var(--background-color);
         color: var(--normal-font-color);
+    }
+
+    form{
+        -width: 66%;
+    }
+    form label{
+        font-size: var(--paragraph-font-size);
+    }
+    input{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-input-height);
+        width: 50%;
+        color:var(--background-color);
+    }
+    input[type="submit"]{
+        font-size: var(--paragraph-font-size);
+        width: 25%;
+    }
+    textarea{
+        font-size: var(--paragraph-font-size);
+        height: var(--desktop-textarea-height);
+        width: 100%;
     }
 
     .introduction > p{

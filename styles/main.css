@@ -39,6 +39,7 @@
     --gallery-landscape-col-gap:6dvw;
     --latest-col-gap: 4dvw;
 
+    --profile-pic-border-radius:50%;
     --mobile-game-margin-top:10%;
     --segment-margin-top:4%;
     --default-gap:2%;
@@ -130,7 +131,9 @@ footer a{
     margin-right: var(--default-gap);
     margin-top: var(--segment-margin-top);
 }
-
+.introduction > img{
+    border-radius: var(--profile-pic-border-radius);
+}
 .introduction > p{
     opacity: 0;
     animation: fade-in var(--fade-in-default-time) forwards;
