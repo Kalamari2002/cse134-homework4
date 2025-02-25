@@ -103,12 +103,18 @@
         <form action="https://httpbin.org/post" method="POST">
             <label for="contact-name">Name</label><br>
             <input type="text" id="contact-name" name="contact-name" placeholder="Jane Doe" minlength="1" maxlength="30" pattern="[A-Z a-z]+" tabindex="1">
+            <output name="name-error-output" for="contact-name">Error message</output>
+            <output name="name-info-output" for="contact-name">Info message</output>
             <br>
             <label for="contact-email">Email *</label><br>
             <input type="email" id="contact-email" name="contact-email" placeholder="example@gmail.com" maxlength="320" required tabindex="2">
+            <output name="email-error-output" for="contact-email">Error message</output>
+            <output name="email-info-output" for="contact-email">Info message</output>
             <br>
             <label for="comments">Comments (max 500 characters) *</label><br>
             <textarea id="comments" name="comments" placeholder="Bugs, features, balance changes" rows="4" cols="50" maxlength="500" required tabindex="3"></textarea>
+            <output name="comments-error-output" for="comments">Error message</output>
+            <output name="comments-info-output" for="comments">Info message</output>
             <br>
             <input type="hidden" name="possible_bot" value="true">
             <input type="submit">

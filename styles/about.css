@@ -171,6 +171,7 @@ textarea{
 textarea:user-invalid{
     background-color: var(--invalid-background-color);
 }
+
 /*Smaller phones*/
 @media screen and (max-width: 500px){
     nav {
@@ -314,7 +315,6 @@ textarea:user-invalid{
 
 }
 
-
 /*Tablet, landscape*/
 @media screen and (min-width: 1000px){
     nav {
@@ -376,7 +376,7 @@ textarea:user-invalid{
         width: var(--long-text-width);
     }
 
-    .interests p{
+    .interests > p{
         width: var(--long-text-width);
     }
 
@@ -433,7 +433,6 @@ textarea:user-invalid{
         font-size: var(--paragraph-font-size);
         height: var(--desktop-input-height);
         width: 50%;
-        color:var(--background-color);
     }
     input[type="submit"]{
         font-size: var(--paragraph-font-size);
@@ -452,7 +451,7 @@ textarea:user-invalid{
     .experience-entry > ul li{
         width: var(--long-text-width);
     }
-    .interests p{
+    .interests > p{
         width: var(--long-text-width);
     }
 }
