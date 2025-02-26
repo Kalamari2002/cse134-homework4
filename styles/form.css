@@ -71,6 +71,21 @@
     --zoomin-scale : 1.1;
 }
 
+@keyframes fade-out {
+    0% { opacity: 1;}
+    75% { opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes flash {
+    0% {background-color: var(--invalid-background-color);}
+    20% {background-color: var(--normal-font-color);}
+    40% {background-color: var(--invalid-background-color);}
+    60% {background-color: var(--normal-font-color);}
+    80% {background-color: var(--invalid-background-color);}
+    100% {background-color: var(--normal-font-color);}
+}
+
 * {
     box-sizing: border-box;
 }
@@ -94,20 +109,20 @@ form label{
     font-size: var(--paragraph-font-size);
 }
 
-
 input {
-    margin-bottom: var(--default-gap);
+    margin-bottom: 1%;
+    height: var(--desktop-input-height);
+    width: 50%;
+
     background-color: var(--normal-font-color);
+    
     color:var(--background-color);
     font-family: var(--paragraph-font-family);
+    font-size: var(--paragraph-font-size);
     
     border-radius: 10px;
     border-style: solid;
     border-color: var(--normal-font-color);
-    
-    font-size: var(--paragraph-font-size);
-    height: var(--desktop-input-height);
-    width: 50%;
 }
 
 input[type="submit"]{
@@ -116,11 +131,16 @@ input[type="submit"]{
 }
 
 input:user-invalid{
+    animation: flash 1s;
     background-color: var(--invalid-background-color);
 }
 
-output{
+output[class="error"]{
     color: var(--invalid-background-color);
+    opacity: 0;
+}
+input:user-invalid ~ output[class="error"]{
+    animation: fade-out 3s;
 }
 
 textarea{
@@ -134,8 +154,9 @@ textarea{
 
     font-size: var(--paragraph-font-size);
     height: var(--desktop-textarea-height);
-    width: 100%;
+    width: 90%;
 }
 textarea:user-invalid{
-    background-color: var(--invalid-background-color);
+    animation: flash 1s;
+    -background-color: var(--invalid-background-color);
 }
