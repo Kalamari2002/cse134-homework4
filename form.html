@@ -15,21 +15,21 @@
             <label for="contact-name">Name</label><br>
             <input type="text" id="contact-name" name="contact-name" placeholder="Jane Doe" minlength="1" maxlength="50" pattern="[A-Za-z .]+" tabindex="1">
             <output class="info" name="name-info-output" for="contact-name">0/50</output><br>
-            <output class="error" name="name-error-output" for="contact-name">There is 1 or more invalid characters in your name.</output>
+            <output class="error" name="name-error-output" for="contact-name">Please only include letters, spaces and periods in your name.</output>
         </div>
         <br>
         <div class="field email-field">
             <label for="contact-email">Email *</label><br>
             <input type="email" id="contact-email" name="contact-email" placeholder="example@gmail.com" maxlength="320" required tabindex="2">
             <output class="info" name="email-info-output" for="contact-email">0/320</output><br>
-            <output class="error" name="email-error-output" for="contact-email">Invalid email!</output>
+            <output class="error" name="email-error-output" for="contact-email">Please insert a valid email.</output>
         </div>
         <br>
         <div class="field comments-field">
             <label for="comments">Comments *</label><br>
             <textarea id="comments" name="comments" placeholder="Bugs, features, balance changes" rows="4" cols="50" maxlength="500" required tabindex="3"></textarea>
             <output class="info" name="comments-info-output" for="comments">0/500</output><br>
-            <output class="error" name="comments-error-output" for="comments">Please don't incldude invalid characters!</output><br>
+            <output class="error" name="comments-error-output" for="comments">Please don't incldude invalid characters.</output><br>
         </div>
         <br>
         <input type="hidden" name="possible_bot" value="true" >

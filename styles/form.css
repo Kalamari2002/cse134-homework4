@@ -25,6 +25,7 @@
     --game-entry-background-color: color(display-p3 0.27 0.25 0.23);
     --normal-font-color: rgb(238, 236, 207);
     --invalid-background-color:rgb(236, 149, 149);
+    --required-color:rgb(226, 101, 101);
 
     --paragraph-font-family: Quicksand;
     --seg-title-font-family: MontserratBoldItalic;
@@ -79,10 +80,6 @@
 
 @keyframes flash {
     0% {background-color: var(--invalid-background-color);}
-    20% {background-color: var(--normal-font-color);}
-    40% {background-color: var(--invalid-background-color);}
-    60% {background-color: var(--normal-font-color);}
-    80% {background-color: var(--invalid-background-color);}
     100% {background-color: var(--normal-font-color);}
 }
 
@@ -109,6 +106,10 @@ form label{
     font-size: var(--paragraph-font-size);
 }
 
+*[required]{
+    border: solid var(--required-color);
+}
+
 input {
     margin-bottom: 1%;
     height: var(--desktop-input-height);
@@ -131,7 +132,7 @@ input[type="submit"]{
 }
 
 input:user-invalid{
-    animation: flash 1s;
+    -animation: flash 1s;
     background-color: var(--invalid-background-color);
 }
 
@@ -140,7 +141,7 @@ output[class="error"]{
     opacity: 0;
 }
 input:user-invalid ~ output[class="error"]{
-    animation: fade-out 3s;
+    opacity: 1;
 }
 
 textarea{
@@ -157,6 +158,6 @@ textarea{
     width: 90%;
 }
 textarea:user-invalid{
-    animation: flash 1s;
-    -background-color: var(--invalid-background-color);
+    -animation: flash 1s;
+    background-color: var(--invalid-background-color);
 }
