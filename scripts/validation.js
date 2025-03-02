@@ -12,8 +12,6 @@ const commentsTextArea = document.querySelector('textarea');
 const commentsInfo = document.querySelector(`output[name='comments-info-output']`);
 const commentsErr = document.querySelector(`output[name='comments-error-output']`);
 
-const toggleSwitch = document.querySelector("input[type='checkbox']");
-
 const INVALID_COLOR_DARK = "#ec9595";
 const WARNING_COLOR_DARK = "#f0a74f";
 const REGULAR_COLOR_DARK = "#eeeccf";
@@ -61,18 +59,6 @@ form.addEventListener("submit",event=>{
     errorData.value = JSON.stringify(form_errors);
     form.appendChild(errorData);
 
-});
-
-toggleSwitch.addEventListener('change',()=>{
-    if(toggleSwitch.checked){
-        curr_invalid_color = INVALID_COLOR_LIGHT;
-        curr_warning_color = WARNING_COLOR_LIGHT;
-        curr_regular_color = REGULAR_COLOR_LIGHT;
-    }else{
-        curr_invalid_color = INVALID_COLOR_DARK;
-        curr_warning_color = WARNING_COLOR_DARK;
-        curr_regular_color = REGULAR_COLOR_DARK;
-    }
 });
 
 console.log(nameInput);
