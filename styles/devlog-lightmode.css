@@ -21,12 +21,11 @@
 
 :root{
     
-    --background-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
-    --game-entry-background-color: color(display-p3 0.27 0.25 0.23);
-    --normal-font-color: rgb(238, 236, 207);
-    --link-font-color: rgb(175, 232, 213);
-    --footer-background-color: rgb(99, 99, 99);
-    --invalid-background-color:rgb(236, 149, 149);
+    --background-color: rgb(238, 236, 207);
+    --game-entry-background-color: rgb(216, 213, 162);
+    --normal-font-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
+    --link-font-color: rgb(164, 107, 38);
+    --footer-background-color: rgb(225, 221, 178);
 
     --paragraph-font-family: Quicksand;
     --seg-title-font-family: MontserratBoldItalic;
@@ -38,19 +37,31 @@
     --landscape-gallery-row-gap:4dvh;
     --gallery-default-col-gap:10dvw;
     --gallery-landscape-col-gap:6dvw;
+    --latest-col-gap: 4dvw;
 
+    --date-width: 80%;
     --mobile-game-margin-top:10%;
-    --item-margin-bottom: 4%;
-    --segment-margin-top:2%;
+    --entry-margin: 5%;
+    --segment-margin-top:4%;
     --default-gap:2%;
 
     --page-title-font-size: 46px;
     --seg-title-font-size: 36px;
+    --large-font-size: 28px;
     --game-title-font-size:28px;
     --paragraph-font-size: 24px;
+    
     --mobile-paragraph-font-size: 20px;
     --mobile-footer-font-size: 18px;
     --mobile-nav-font-size: 16px;
+
+    --thumbnail-width-long: 450px;
+
+    --desktop-iframe-width: 720px;
+    --desktop-iframe-height: 415px;
+
+    --mobile-iframe-width: 315px;
+    --mobile-iframe-height: 315px;
 
     --desktop-game-width: 500px;
     --mobile-game-width: 350px;
@@ -64,10 +75,12 @@
     --image-width-modifier: 0.9;
     --game-entry-padding-modifier: 0.05;
     
-    --long-text-width: 75ch;
+    --entry-text-width: 80ch;
+    --long-text-width: 70ch;
     --medium-text-width: 50ch;
     --latest-text-width: 30ch;
     --short-text-width: 25ch;
+    --mobile-text-width: 20ch;
 
     --fade-in-default-time: 2s;
     --introduction-animation-delay: 1.2s;
@@ -80,17 +93,12 @@
     from { opacity: 0;}
     to { opacity: 1; }
 }
-
-.introduction > p{
-    opacity: 0;
-    animation: fade-in var(--fade-in-default-time) forwards;
-    animation-delay: var(--introduction-animation-delay);
-}
 /*This makes sure that border and, most importantly, 
 padding are both included in the width/height of an element*/
 * {
     box-sizing: border-box;
     -border-style: solid;
+    -border-color: aqua;
 }
 
 body{
@@ -154,28 +162,60 @@ input:checked + .slider{
 
 p {
     font-size: var(--paragraph-font-size);
+    width: var(--long-text-width);
 }
 
 a {
     color: var(--link-font-color);
 }
 
+iframe{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 footer{
     margin-top: var(--segment-margin-top);
     padding: var(--default-gap);
     width: 100%;
     background-color:var(--footer-background-color);
-    font-size: var(--paragraph-font-size);
 }
 footer a{
     text-decoration: none;
 }
 
-section{
-    margin-left: var(--default-gap);
-    margin-right: var(--default-gap);
-    margin-top: var(--segment-margin-top);
+header p{
+    width: var(--date-width);
 }
+
+.devlog-entry{
+    margin-left: var(--entry-margin);
+    margin-right: var(--entry-margin);
+    margin-top: var(--segment-margin-top);
+    border-style: solid;
+    padding: var(--default-gap); 
+    border-color: var(--normal-font-color);
+    background-color: var(--game-entry-background-color);
+}
+
+.devlog-entry > table colgroup{
+    background-color: var(--background-color);
+}
+
+.introduction > p{
+    opacity: 0;
+    animation: fade-in var(--fade-in-default-time) forwards;
+    animation-delay: var(--introduction-animation-delay);
+}
+
 
 /*Smaller phones*/
 @media screen and (max-width: 500px){
@@ -212,23 +252,57 @@ section{
         font-size: var(--mobile-footer-font-size);
     }
 
+    iframe{
+        width: var(--mobile-iframe-width);
+        height: var(--mobile-iframe-height);
+    }
+
+    aside p{
+        width: var(--mobile-text-width);
+    }
+
+    .introduction{
+        margin: var(--default-gap);
+    }
     .introduction > p{
-        width: var(--short-text-width);
-    }    
-
-    .experience-entry > ul li{
-        width: var(--short-text-width);
+        font-family: var(--large-font-family),Helvetica;
         font-size: var(--mobile-paragraph-font-size);
-        margin-bottom: var(--item-margin-bottom);
+        width: var(--short-text-width);
+    }
+    .devlog-entry > p {
+        width: var(--mobile-text-width);;
     }
 
-    .interests p{
+    .devlog-entry > ol{
+        font-size: var(--mobile-paragraph-font-size);
+    }
+
+    .devlog-entry > dl{
+        font-size: var(--mobile-paragraph-font-size);
         width: var(--short-text-width);
     }
 
+    .devlog-entry > details p{
+        font-size: var(--mobile-paragraph-font);
+        width: var(--mobile-text-width);
+    }
+
+    .devlog-entry > table{
+        font-size: 16px;
+    }    
+    .devlog-entry > table tr th{
+        padding:5px;
+    }
+    .devlog-entry > table tr td{
+        padding:5px;
+    }
+
+    .devlog-entry > aside blockquote {
+        font-size: var(--mobile-paragraph-font-size);
+    }
 }
 
-/*Intermediate*/
+/*Smaller phones*/
 @media screen and (min-width: 500px){
     nav {
         display: flex;
@@ -263,24 +337,58 @@ section{
         font-size: var(--mobile-footer-font-size);
     }
 
+    iframe{
+        width: var(--mobile-iframe-width);
+        height: var(--mobile-iframe-height);
+    }
+
+    aside p{
+        width: var(--mobile-text-width);
+    }
+
+    .introduction{
+        margin: var(--default-gap);
+    }
     .introduction > p{
-        width: var(--short-text-width);
-    }    
-
-    .experience-entry > ul li{
-        width: var(--short-text-width);
+        font-family: var(--large-font-family),Helvetica;
         font-size: var(--mobile-paragraph-font-size);
-        margin-bottom: var(--item-margin-bottom);
+        width: var(--short-text-width);
+    }
+    .devlog-entry > p {
+        width: var(--mobile-text-width);;
     }
 
-    .interests p{
+    .devlog-entry > ol{
+        font-size: var(--mobile-paragraph-font-size);
+    }
+
+    .devlog-entry > dl{
+        font-size: var(--mobile-paragraph-font-size);
         width: var(--short-text-width);
     }
 
+    .devlog-entry > details{
+        font-size: var(--mobile-paragraph-font-size);
+    }
+
+    .devlog-entry > table{
+        font-size: 16px;
+    }    
+    .devlog-entry > table tr th{
+        padding:5px;
+    }
+    .devlog-entry > table tr td{
+        padding:5px;
+    }
+
+    .devlog-entry > aside blockquote {
+        font-size: var(--mobile-paragraph-font-size);
+    }
 }
 
+
 /*Tablet, landscape*/
-@media screen and (min-width: 1000px){
+@media screen and (min-width: 1100px) {
     nav {
         display: flex;
         background-color: var(--normal-font-color);
@@ -312,30 +420,68 @@ section{
         color: var(--normal-font-color);
     }
 
-    .introduction > p{
-        width: var(--long-text-width);
-    }    
-
-    .introduction > p{
-        width: var(--long-text-width);
-    }
-
-    .interests > p{
-        width: var(--long-text-width);
-    }
-
-    .experience-entry > ul li{
+    figcaption{
+        font-size: var(--mobile-paragraph-font-size);
         width: var(--medium-text-width);
+    }
+
+    img{
+        object-position: 50% 0%;
+    }
+
+    iframe{
+        width: var(--desktop-iframe-width);
+        height: var(--desktop-iframe-height);
+
+    }
+    aside p{
+        width: var(--medium-text-width);
+    }
+    .introduction{
+        margin: var(--default-gap);
+    }
+    .introduction > p{
+        font-family: var(--large-font-family),Helvetica;
+        font-size: var(--large-font-size);
+        width: var(--medium-text-width);
+    }
+
+    .devlog-entry > p {
+        width: 80ch;
+        width: var(--medium-text-width);
+    }
+
+    .devlog-entry > ol{
         font-size: var(--paragraph-font-size);
-        margin-bottom: var(--default-gap);
+    }
+
+    .devlog-entry > dl{
+        font-size: var(--paragraph-font-size);
+        width: var(--medium-text-width);
+    }
+
+    .devlog-entry > details{
+        font-size: var(--paragraph-font-size);
+    }
+
+    .devlog-entry > table{
+        font-size: var(--paragraph-font-size);
+    }    
+    .devlog-entry > table tr th{
+        padding:15px;
+    }
+    .devlog-entry > table tr td{
+        padding:15px;
+    }
+
+    .devlog-entry > aside blockquote {
+        font-size: var(--paragraph-font-size);
     }
 }
+
 
 /*Desktop*/
 @media screen and (min-width: 1300px) {
-    ul{
-        font-size: var(--paragraph-font-size);
-    }
     nav {
         display: flex;
         background-color: var(--normal-font-color);
@@ -365,20 +511,67 @@ section{
     nav li a:hover {
         background-color: var(--background-color);
         color: var(--normal-font-color);
+    }
+
+    figcaption{
+        font-size: var(--mobile-paragraph-font-size);
+        width: var(--medium-text-width);
+    }
+
+    img{
+        object-position: 50% 0%;
+    }
+
+    iframe{
+        width: var(--desktop-iframe-width);
+        height: var(--desktop-iframe-height);
+
+    }
+    aside p{
+        width: var(--entry-text-width);
     }
 
     footer{
         font-size: var(--paragraph-font-size);
     }
-
+    .introduction{
+        margin: var(--default-gap);
+    }
     .introduction > p{
-        width: var(--long-text-width);
-    }    
-
-    .experience-entry > ul li{
+        font-family: var(--large-font-family),Helvetica;
+        font-size: var(--large-font-size);
         width: var(--long-text-width);
     }
-    .interests > p{
+
+    .devlog-entry > p {
+        width: 80ch;
+        width: var(--entry-text-width);
+    }
+
+    .devlog-entry > ol{
+        font-size: var(--paragraph-font-size);
+    }
+
+    .devlog-entry > dl{
+        font-size: var(--paragraph-font-size);
         width: var(--long-text-width);
+    }
+
+    .devlog-entry > details{
+        font-size: var(--paragraph-font-size);
+    }
+
+    .devlog-entry > table{
+        font-size: var(--paragraph-font-size);
+    }    
+    .devlog-entry > table tr th{
+        padding:15px;
+    }
+    .devlog-entry > table tr td{
+        padding:15px;
+    }
+
+    .devlog-entry > aside blockquote {
+        font-size: var(--paragraph-font-size);
     }
 }

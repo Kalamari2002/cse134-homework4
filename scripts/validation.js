@@ -12,6 +12,20 @@ const commentsTextArea = document.querySelector('textarea');
 const commentsInfo = document.querySelector(`output[name='comments-info-output']`);
 const commentsErr = document.querySelector(`output[name='comments-error-output']`);
 
+const toggleSwitch = document.querySelector("input[type='checkbox']");
+
+const INVALID_COLOR_DARK = "#ec9595";
+const WARNING_COLOR_DARK = "#f0a74f";
+const REGULAR_COLOR_DARK = "#eeeccf";
+
+const INVALID_COLOR_LIGHT = "#b45454";
+const WARNING_COLOR_LIGHT = "#c4883f";
+const REGULAR_COLOR_LIGHT = "#24221f"; 
+
+let curr_invalid_color;
+let curr_warning_color;
+let curr_regular_color;
+
 const NAME_REGEXP = /[A-Za-z .]+/;
 const EMAIL_REGEXP = /[a-zA-Z0-9.*%±]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}/;
 const COMMENTS_REGEXP = /[A-Za-z0-9 .,?!;:"'()]+/
@@ -30,35 +44,15 @@ const form_errors = [
     }
 ];
 
-// nameInput.addEventListener("input", (event)=>{
-//     nameInput.setCustomValidity("");
-//     console.log(nameInput.value.length);
-//     const currCount = nameInput.value.length;
-//     const maxCount = nameInput.getAttribute("maxlength");
-//     nameInfo.innerHTML =  `${currCount}/${maxCount}`;
-//     if(!nameInput.checkValidity()){
-//         console.log("NAME ERROR");
-//     }else{
-//         //nameInfo.hidden = true;
-//     }
-// });
-
-// form.addEventListener("submit",event=>{
-//     event.preventDefault();
-//     const formData = new FormData(form);
-//     formData.append('form-errors',{});
-
-//     fetch('https://httpbin.org/post', {
-//         method:"POST",
-//         body:formData
-//     })
-//     .then(response => response.json())
-//     .then(response => {
-//         console.log(response);
-//     });
-
-// });
-
+if(localStorage.getItem('ToggleMode') == 'dark'){
+    curr_invalid_color = INVALID_COLOR_DARK;
+    curr_warning_color = WARNING_COLOR_DARK;
+    curr_regular_color = REGULAR_COLOR_DARK;
+}else if(localStorage.getItem('ToggleMode') == 'light'){
+    curr_invalid_color = INVALID_COLOR_LIGHT;
+    curr_warning_color = WARNING_COLOR_LIGHT;
+    curr_regular_color = REGULAR_COLOR_LIGHT;
+}
 
 form.addEventListener("submit",event=>{
     const errorData = document.createElement('input');
@@ -67,6 +61,18 @@ form.addEventListener("submit",event=>{
     errorData.value = JSON.stringify(form_errors);
     form.appendChild(errorData);
 
+});
+
+toggleSwitch.addEventListener('change',()=>{
+    if(toggleSwitch.checked){
+        curr_invalid_color = INVALID_COLOR_LIGHT;
+        curr_warning_color = WARNING_COLOR_LIGHT;
+        curr_regular_color = REGULAR_COLOR_LIGHT;
+    }else{
+        curr_invalid_color = INVALID_COLOR_DARK;
+        curr_warning_color = WARNING_COLOR_DARK;
+        curr_regular_color = REGULAR_COLOR_DARK;
+    }
 });
 
 console.log(nameInput);
@@ -112,14 +118,14 @@ commentsTextArea.addEventListener("input", (event)=>{
     commentsErr.style.opacity = 0;
     commentsInfo.innerHTML = `${currCount}/${maxCount}`;
     if(currCount < 400) {
-        commentsInfo.style.color="#eeeccf";
-        commentsTextArea.style.backgroundColor = "#eeeccf";
+        commentsInfo.style.color=curr_regular_color;
+        commentsTextArea.style.backgroundColor = curr_regular_color;
     } else if(currCount >= 400 && currCount < 500) {
-        commentsInfo.style.color="#f0a74f";
-        commentsTextArea.style.backgroundColor = "#f0a74f";
+        commentsInfo.style.color=curr_warning_color;
+        commentsTextArea.style.backgroundColor = curr_warning_color;
     } else {
-        commentsInfo.style.color = "#ec9595";
-        commentsTextArea.style.backgroundColor = "#ec9595";
+        commentsInfo.style.color = curr_invalid_color;
+        commentsTextArea.style.backgroundColor = curr_invalid_color;
         commentsErr.innerHTML = "Character limit reached!"
         commentsErr.style.opacity = 1;
     }
@@ -127,7 +133,7 @@ commentsTextArea.addEventListener("input", (event)=>{
 
 
 function flashError(inputElement,errorOutput,message){
-    const flashKeyFrames = [{backgroundColor: "#ec9595"}, {backgroundColor: "#eeeccf"}];
+    const flashKeyFrames = [{backgroundColor: curr_invalid_color}, {backgroundColor: curr_regular_color}];
     const flashTiming = { duration: 2000 };
 
     const fadeoutFrames = [{opacity: 1}, {opacity: 1}, {opacity: 1}, {opacity: 1}, {opacity: 0}];

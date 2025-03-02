@@ -51,6 +51,12 @@
 
     --desktop-game-width: 500px;
     --mobile-game-width: 350px;
+    
+    /*toggle variables*/
+    --slider-relative-size: 50%;
+    --slider-border-width: 6px;
+    --switch-width:100px;
+    --switch-height:50px;
 
     --image-width-modifier: 0.9;
     --game-entry-padding-modifier: 0.05;
@@ -69,6 +75,7 @@
 padding are both included in the width/height of an element*/
 * {
     box-sizing: border-box;
+    -border-style: solid;
 }
 
 body{
@@ -93,6 +100,41 @@ h2{
 
 h3{
     font-size: var(--game-title-font-size);
+}
+
+.switch{
+    width: var(--switch-width);
+    height:var(--switch-height);
+    position:relative;
+    display: inline-block;
+    border-style: solid;
+}
+.switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--normal-font-color);
+    border: solid var(--background-color) var(--slider-border-width);
+    width: var(--slider-relative-size);
+}
+input:checked + .slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    background-color: var(--normal-font-color);
+    border: solid var(--background-color) 6px;
+    width: 50%;
 }
 
 p {

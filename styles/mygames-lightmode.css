@@ -21,12 +21,11 @@
 
 :root{
     
-    --background-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
-    --game-entry-background-color: color(display-p3 0.27 0.25 0.23);
-    --normal-font-color: rgb(238, 236, 207);
-    --link-font-color: rgb(175, 232, 213);
-    --footer-background-color: rgb(99, 99, 99);
-    --invalid-background-color:rgb(236, 149, 149);
+    --background-color: rgb(238, 236, 207);
+    --game-entry-background-color: rgb(216, 213, 162);
+    --normal-font-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
+    --link-font-color: rgb(164, 107, 38);
+    --footer-background-color: rgb(225, 221, 178);
 
     --paragraph-font-family: Quicksand;
     --seg-title-font-family: MontserratBoldItalic;
@@ -40,15 +39,13 @@
     --gallery-landscape-col-gap:6dvw;
 
     --mobile-game-margin-top:10%;
-    --item-margin-bottom: 4%;
-    --segment-margin-top:2%;
+    --segment-margin-top:4%;
     --default-gap:2%;
 
     --page-title-font-size: 46px;
     --seg-title-font-size: 36px;
     --game-title-font-size:28px;
     --paragraph-font-size: 24px;
-    --mobile-paragraph-font-size: 20px;
     --mobile-footer-font-size: 18px;
     --mobile-nav-font-size: 16px;
 
@@ -64,13 +61,7 @@
     --image-width-modifier: 0.9;
     --game-entry-padding-modifier: 0.05;
     
-    --long-text-width: 75ch;
-    --medium-text-width: 50ch;
-    --latest-text-width: 30ch;
-    --short-text-width: 25ch;
-
     --fade-in-default-time: 2s;
-    --introduction-animation-delay: 1.2s;
     --quick-transition-time: 0.5s;
 
     --zoomin-scale : 1.1;
@@ -80,17 +71,10 @@
     from { opacity: 0;}
     to { opacity: 1; }
 }
-
-.introduction > p{
-    opacity: 0;
-    animation: fade-in var(--fade-in-default-time) forwards;
-    animation-delay: var(--introduction-animation-delay);
-}
 /*This makes sure that border and, most importantly, 
 padding are both included in the width/height of an element*/
 * {
     box-sizing: border-box;
-    -border-style: solid;
 }
 
 body{
@@ -152,6 +136,7 @@ input:checked + .slider{
     width: 50%;
 }
 
+
 p {
     font-size: var(--paragraph-font-size);
 }
@@ -171,10 +156,20 @@ footer a{
     text-decoration: none;
 }
 
-section{
+.segment{
     margin-left: var(--default-gap);
     margin-right: var(--default-gap);
     margin-top: var(--segment-margin-top);
+}
+
+.game-entry{
+    background-color: var(--game-entry-background-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.game-entry > a {
+    align-self: center;
 }
 
 /*Smaller phones*/
@@ -212,23 +207,23 @@ section{
         font-size: var(--mobile-footer-font-size);
     }
 
-    .introduction > p{
-        width: var(--short-text-width);
-    }    
-
-    .experience-entry > ul li{
-        width: var(--short-text-width);
-        font-size: var(--mobile-paragraph-font-size);
-        margin-bottom: var(--item-margin-bottom);
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .interests p{
-        width: var(--short-text-width);
+    .game-entry {
+        margin-top: var(--mobile-game-margin-top);
+        width: var(--mobile-game-width);
+        padding: calc(var(--mobile-game-width) * var(--game-entry-padding-modifier));
     }
-
+    .game-entry > a picture img{
+        width: calc(var(--mobile-game-width) * var(--image-width-modifier));
+        height: calc(var(--mobile-game-width) * var(--image-width-modifier));
+    }
 }
 
-/*Intermediate*/
 @media screen and (min-width: 500px){
     nav {
         display: flex;
@@ -259,28 +254,26 @@ section{
         color: var(--normal-font-color);
     }
 
-    footer{
-        font-size: var(--mobile-footer-font-size);
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .introduction > p{
-        width: var(--short-text-width);
-    }    
-
-    .experience-entry > ul li{
-        width: var(--short-text-width);
-        font-size: var(--mobile-paragraph-font-size);
-        margin-bottom: var(--item-margin-bottom);
+    .game-entry {
+        margin-top: var(--mobile-game-margin-top);
+        width: var(--mobile-game-width);
+        padding: calc(var(--mobile-game-width) * var(--game-entry-padding-modifier));
     }
-
-    .interests p{
-        width: var(--short-text-width);
+    .game-entry > a picture img{
+        width: calc(var(--mobile-game-width) * var(--image-width-modifier));
+        height: calc(var(--mobile-game-width) * var(--image-width-modifier));
     }
-
 }
 
+
 /*Tablet, landscape*/
-@media screen and (min-width: 1000px){
+@media only screen and (min-width: 1100px) {
     nav {
         display: flex;
         background-color: var(--normal-font-color);
@@ -312,30 +305,32 @@ section{
         color: var(--normal-font-color);
     }
 
-    .introduction > p{
-        width: var(--long-text-width);
-    }    
-
-    .introduction > p{
-        width: var(--long-text-width);
+    .gallery-container {
+        display: grid;
+        column-gap: var(--gallery-landscape-col-gap);
+        row-gap: var(--landscape-gallery-row-gap);
+    }
+    
+    .two-col{
+        column-gap: var(--gallery-landscape-col-gap);
+        grid-template-columns: auto auto;
+    }
+    
+    .three-col{
+        grid-template-columns: auto auto auto;
     }
 
-    .interests > p{
-        width: var(--long-text-width);
+    .game-entry{
+        width: var(--desktop-game-width);
+        padding: calc(var(--desktop-game-width) * var(--game-entry-padding-modifier));
     }
-
-    .experience-entry > ul li{
-        width: var(--medium-text-width);
-        font-size: var(--paragraph-font-size);
-        margin-bottom: var(--default-gap);
+    .game-entry > a picture img{
+        width: calc(var(--desktop-game-width) * var(--image-width-modifier));
     }
 }
 
 /*Desktop*/
 @media screen and (min-width: 1300px) {
-    ul{
-        font-size: var(--paragraph-font-size);
-    }
     nav {
         display: flex;
         background-color: var(--normal-font-color);
@@ -367,18 +362,33 @@ section{
         color: var(--normal-font-color);
     }
 
-    footer{
-        font-size: var(--paragraph-font-size);
+    .gallery-container {
+        display: grid;
+        justify-content: center;
+        column-gap: var(--gallery-default-col-gap);
+        row-gap: var(--landscape-gallery-row-gap);
+    }
+    
+    .two-col{
+        column-gap: var(--gallery-default-col-gap);
+        grid-template-columns: auto auto;
+    }
+    
+    .three-col{
+        grid-template-columns: auto auto auto;
     }
 
-    .introduction > p{
-        width: var(--long-text-width);
-    }    
-
-    .experience-entry > ul li{
-        width: var(--long-text-width);
+    .game-entry{
+        width: var(--desktop-game-width);
+        padding: calc(var(--desktop-game-width) * var(--game-entry-padding-modifier));
+        transform: scale(1,1);
+        transition: transform var(--quick-transition-time);
     }
-    .interests > p{
-        width: var(--long-text-width);
+    .game-entry:hover{
+        transform: scale(var(--zoomin-scale),var(--zoomin-scale));
+    }
+    .game-entry > a picture img{
+        width: calc(var(--desktop-game-width) * var(--image-width-modifier));
+        height: calc((var(--desktop-game-width) * var(--image-width-modifier))/1.8);
     }
 }

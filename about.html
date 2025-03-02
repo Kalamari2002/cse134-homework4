@@ -27,6 +27,15 @@
             </li>
         </ul>
     </nav>
+    <br>
+    <span class="mode-toggle" hidden>
+        <img src="./images/icons/moon_icon_darkmode.png" alt="moon-icon" width="50px">
+        <label class="switch">
+            <input type="checkbox" disabled>
+            <span class="slider"></span>
+        </label>
+        <img src="./images/icons/sun_icon_darkmode.png" alt="sun-icon" width="50px">
+    </span>
     <h1>About Me</h1>
     <section class="introduction" title="introduction">
         <h2>My journey</h2>
@@ -95,31 +104,6 @@
             strange and bizarre.  
         </p>
     </section>
-    <section class="contact-form" title="contact-form">
-        <hgroup>    
-            <h2>Let's talk!</h2>
-            <p>If you any suggestions for my latest project, I'd love to hear you out.</p>
-        </hgroup>
-        <form action="https://httpbin.org/post" method="POST">
-            <label for="contact-name">Name</label><br>
-            <input type="text" id="contact-name" name="contact-name" placeholder="Jane Doe" minlength="1" maxlength="30" pattern="[A-Z a-z]+" tabindex="1">
-            <output name="name-error-output" for="contact-name">Error message</output>
-            <output name="name-info-output" for="contact-name">Info message</output>
-            <br>
-            <label for="contact-email">Email *</label><br>
-            <input type="email" id="contact-email" name="contact-email" placeholder="example@gmail.com" maxlength="320" required tabindex="2">
-            <output name="email-error-output" for="contact-email">Error message</output>
-            <output name="email-info-output" for="contact-email">Info message</output>
-            <br>
-            <label for="comments">Comments (max 500 characters) *</label><br>
-            <textarea id="comments" name="comments" placeholder="Bugs, features, balance changes" rows="4" cols="50" maxlength="500" required tabindex="3"></textarea>
-            <output name="comments-error-output" for="comments">Error message</output>
-            <output name="comments-info-output" for="comments">Info message</output>
-            <br>
-            <input type="hidden" name="possible_bot" value="true">
-            <input type="submit">
-        </form>
-    </section>
     <footer>
         <address>
             Author: Gabriel Ikezaki<br> 
@@ -133,5 +117,65 @@
             <a href="https://github.com/Kalamari2002" target="_blank">Github</a>
          </span>
     </footer>
+    <script>
+        const moonIconDark = "./images/icons/moon_icon_darkmode.png";
+        const moonIconLight = "./images/icons/moon_icon_lightmode.png";
+        const sunIconDark = "./images/icons/sun_icon_darkmode.png";
+        const sunIconLight = "./images/icons/sun_icon_lightmode.png";
+
+        const toggleIcons = document.querySelectorAll(".mode-toggle > img");
+        const moonIcon = toggleIcons[0];
+        const sunIcon = toggleIcons[1];
+
+        const toggleWrapper = document.querySelector(".mode-toggle");
+        const toggle = document.querySelector("input[type='checkbox']");
+
+        const lightStyleSrc = "./styles/about-lightmode.css";
+        const darkStyleSrc = "./styles/about.css";
+
+        const styleLink = document.querySelector("link");
+        
+
+        toggleWrapper.hidden = false;
+        toggle.disabled = false;
+
+        if(localStorage.getItem('ToggleMode') == null){
+            console.log("No Data");
+            switchToDarkMode();
+        }else{
+            if(localStorage.getItem('ToggleMode') == 'dark'){
+                switchToDarkMode();
+                toggle.checked = false;
+            }else if(localStorage.getItem('ToggleMode') == 'light'){
+                switchToLightMode();
+                toggle.checked = true;
+            }
+        }
+        toggle.addEventListener('change',()=>{
+            toggleMode();
+        });
+
+        function toggleMode(){
+            let mode = localStorage.getItem('ToggleMode');
+            if(mode == 'dark'){
+                switchToLightMode();
+            }else if(mode == 'light'){
+                switchToDarkMode();
+            }
+        }
+
+        function switchToLightMode(){
+            styleLink.href = lightStyleSrc;
+            localStorage.setItem('ToggleMode', 'light');
+            moonIcon.src = moonIconLight;
+            sunIcon.src = sunIconLight;
+        }
+        function switchToDarkMode(){
+            styleLink.href = darkStyleSrc;
+            localStorage.setItem('ToggleMode', 'dark');
+            moonIcon.src = moonIconDark;
+            sunIcon.src = sunIconDark;
+        }
+    </script>
 </body>
 </html>

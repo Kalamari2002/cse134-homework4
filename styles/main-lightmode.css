@@ -21,11 +21,11 @@
 
 :root{
     
-    --background-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
-    --game-entry-background-color: color(display-p3 0.27 0.25 0.23);
-    --normal-font-color: rgb(238, 236, 207);
-    --link-font-color: rgb(175, 232, 213);
-    --footer-background-color: rgb(99, 99, 99);
+    --background-color: rgb(238, 236, 207);
+    --game-entry-background-color: rgb(216, 213, 162);
+    --normal-font-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
+    --link-font-color: rgb(164, 107, 38);
+    --footer-background-color: rgb(225, 221, 178);
 
     --paragraph-font-family: Quicksand;
     --seg-title-font-family: MontserratBoldItalic;
@@ -40,7 +40,6 @@
     --latest-col-gap: 4dvw;
 
     --profile-pic-border-radius:50%;
-
     --mobile-game-margin-top:10%;
     --segment-margin-top:4%;
     --default-gap:2%;
@@ -64,7 +63,10 @@
     --slider-border-width: 6px;
     --switch-width:100px;
     --switch-height:50px;
-    
+
+    --button-toggle-width: 200px;
+    --button-toggle-height:50px;
+
     --image-width-modifier: 0.9;
     --game-entry-padding-modifier: 0.05;
     
@@ -148,6 +150,26 @@ input:checked + .slider{
     border: solid var(--background-color) 6px;
     width: 50%;
 }
+
+
+button{
+    background-color: var(--background-color);
+    
+    border: solid var(--normal-font-color);
+
+    font-family: var(--paragraph-font-family);
+    font-size: var(--paragraph-font-family);
+    color: var(--normal-font-color);
+
+    margin-top: var(--default-gap);
+
+    width: var(--button-toggle-width);
+    height: var(--button-toggle-height);
+}
+button:hover{
+    cursor: pointer;
+}
+
 
 p {
     font-size: var(--paragraph-font-size);

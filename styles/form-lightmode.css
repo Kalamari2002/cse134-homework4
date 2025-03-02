@@ -21,11 +21,13 @@
 
 :root{
     
-    --background-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
-    --game-entry-background-color: color(display-p3 0.27 0.25 0.23);
-    --normal-font-color: rgb(238, 236, 207);
-    --invalid-background-color:rgb(236, 149, 149);
-    --required-color:rgb(226, 101, 101);
+    --background-color: rgb(238, 236, 207);
+    --game-entry-background-color: rgb(216, 213, 162);
+    --normal-font-color: color-mix(in hsl, hsl(0, 8%, 15%), rgb(52, 51, 42) 35%);
+    --link-font-color: rgb(164, 107, 38);
+    --footer-background-color: rgb(225, 221, 178);
+    --invalid-background-color:rgb(180, 84, 84);
+    --required-color:rgb(221, 67, 67);
 
     --paragraph-font-family: Quicksand;
     --seg-title-font-family: MontserratBoldItalic;
@@ -56,7 +58,7 @@
 
     --desktop-game-width: 500px;
     --mobile-game-width: 350px;
-    
+
     /*toggle variables*/
     --slider-relative-size: 50%;
     --slider-border-width: 6px;
